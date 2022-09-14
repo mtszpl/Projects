@@ -1,8 +1,8 @@
 # Projects
 Portfolio of projects by Mateusz Płonka
 
-#University
+## University
 Projects made for university
 
-#Private
+# #Private
 Projects made for private use or training.
