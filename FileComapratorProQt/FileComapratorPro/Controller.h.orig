@@ -1,0 +1,76 @@
+#pragma once
+#include "MainWindow.h"
+#include "FileIOHandler.h"
+#include "ViewController.h"
+#include "Comparator.h"
+#include "TxtHandler.h"
+#include <QtWidgets/QApplication>
+
+<<<<<<< HEAD
+=======
+/**Class acts as applications main controller.*/
+>>>>>>> origin/main
+class Controller :
+	public QApplication
+{
+private:
+	MainWindow m_Window;
+	Comparator m_Comparator;
+
+	std::unique_ptr<FileIOHandler> m_LeftFileHandler, m_RightFileHandler;
+	std::unique_ptr<ViewController> m_ControllerLeft;
+	std::unique_ptr<ViewController> m_ControllerRight;
+
+	std::vector<int> m_DiffVector;
+
+	int m_PickDiff = 0;
+	bool m_Compared;
+
+
+public:
+	Controller(int argc, char* argv[]);
+
+public slots:
+
+	/**Method promts user With windows file chooser. Then, invokes handling method according to file type
+	*@param textEdit pointer to applications edit field
+	*@param handler reference to appropriate handler
+	*/
+	void openFile(QTextEdit* textEdit, std::unique_ptr<FileIOHandler>& handler);
+
+	/**Method creates an instance of TxtHandler if *.txt file extension was choosen
+	* @param handler reference to appropriate handler
+	* @param textEdit pointer to applications edit field
+	* @param path path to file which the user has choosen
+	*/
+	void openTXT(std::unique_ptr<FileIOHandler>& handler, QTextEdit* textEdit, QString& path);
+
+	/**Method controls the process of comparison of two files*/
+	void wantCompare();
+
+<<<<<<< HEAD
+	void pickDiff(int factor = 1);
+=======
+	/**Method controls the process of picking next diffrence*/
+	void pickNextDiff();
+
+	/**Method controls the process of picking previous diffrence*/
+	void pickPrevDiff();
+>>>>>>> origin/main
+
+	/**Method controls replacing parts of particular files */
+	void replace(QTextEdit* textEditFrom, QTextEdit* textEditTo);
+
+	/**Method controls resetting*/
+	void reset();
+
+	/**Method handles saving files
+	*@param handler reference to appropriate handler*/
+	void save(std::unique_ptr<FileIOHandler>& handler);
+
+	/**Method invokes methods responsible for updating text edit fields.
+	* *@param handler reference to appropriate handler*/
+	void updateTextEdit(std::unique_ptr<FileIOHandler>& handler);
+
+	void equalizeLines();
+};
