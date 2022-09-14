@@ -1,0 +1,4 @@
+﻿  Character.cpp
+  Game.cpp
+MainWindow.obj : error LNK2001: unresolved external symbol __imp__al_init_image_addon
+D:\Users\Mati\Mati\rzeczy\c++\n\boots\boots\Release\boots.exe : fatal error LNK1120: 1 unresolved externals
