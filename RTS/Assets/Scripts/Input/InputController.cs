@@ -20,6 +20,7 @@ public class InputController : MonoBehaviour
     UnityEvent<int> m_onFasterMove;
     UnityEvent<int> m_onFireInput;
     UnityEvent<int> m_onAltFireInput;
+    UnityEvent m_onFireCancel;
     UnityEvent m_closeAllUIs;
 
     private void Awake()
@@ -47,6 +48,8 @@ public class InputController : MonoBehaviour
             m_onFireInput = new UnityEvent<int>();
         if (m_onAltFireInput == null)
             m_onAltFireInput = new UnityEvent<int>();
+        if (m_onFireCancel == null)
+            m_onFireCancel = new UnityEvent();
         if (m_closeAllUIs == null)
             m_closeAllUIs = new UnityEvent();
     }
@@ -74,6 +77,7 @@ public class InputController : MonoBehaviour
         m_controls.Player.FasterMove.canceled += OnFasterMove;
 
         m_controls.Player.Fire.performed += OnFire;
+        m_controls.Player.Fire.canceled += OnFireCancel;
         m_controls.Player.AltFire.performed += OnAltFire;
     }
 
@@ -179,7 +183,6 @@ public class InputController : MonoBehaviour
         int input = (int)context.ReadValue<float>();
         m_onFireInput.Invoke(input);
     }
-
     public static void PlugToFire(UnityAction<int> callback)
     {
         m_instance.m_onFireInput.AddListener(callback);
@@ -189,6 +192,23 @@ public class InputController : MonoBehaviour
     {
         m_instance.m_onFireInput.RemoveListener(callback);
     }
+
+    void OnFireCancel(InputAction.CallbackContext context)
+    {
+        int input = (int)context.ReadValue<float>();
+        m_onFireCancel.Invoke();
+    }
+
+    public static void PlugToFireCancel(UnityAction callback)
+    {
+        m_instance.m_onFireCancel.AddListener(callback);
+    }
+
+    public static void UnplugFromFireCancel(UnityAction callback)
+    {
+        m_instance.m_onFireCancel.RemoveListener(callback);
+    }
+
 
     void OnAltFire(InputAction.CallbackContext context)
     {

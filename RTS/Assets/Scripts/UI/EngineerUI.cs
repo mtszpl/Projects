@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactoryUI : ConstructionUI
+public class EngineerUI : ConstructionUI
 {
     public override void Init()
     {
@@ -11,9 +11,8 @@ public class FactoryUI : ConstructionUI
 
     public override void SpawnFromOption(SelectableEntity toSpawn)
     {
-
-        Factory parentFactory = m_parent as Factory;
-        if (parentFactory != null)
-            parentFactory.AddToConstructionQueue(toSpawn as Unit);
+        Engineer parentEngineer = m_parent as Engineer;
+        if (parentEngineer != null)
+            parentEngineer.StartConstruction(toSpawn as Building);
     }
 }

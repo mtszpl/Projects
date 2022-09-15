@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ghost : Entity
 {
     [SerializeField] int m_gridSize;
-    [SerializeField] Building m_building;
+    //[SerializeField] Building m_building;
 
     Collider m_collider;
 
@@ -28,12 +28,12 @@ public class Ghost : Entity
         if (!CheckBuildPlace())
             return false;
 
-        Instantiate(m_building, transform.position, transform.rotation);
+        //Instantiate(m_building, transform.position, transform.rotation);
         GameObject.Destroy(gameObject);
         return true;
     }
 
-    private bool CheckBuildPlace()
+    public bool CheckBuildPlace()
     {
         Vector3 extent = new Vector3(m_gridSize/2, m_gridSize/2, 0);
         Collider[] colliders = Physics.OverlapBox(

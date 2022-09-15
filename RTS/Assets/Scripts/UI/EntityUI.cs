@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityUI : MonoBehaviour
 {
-    public ClickableEntity m_parent;
+    public SelectableEntity m_parent;
     [SerializeField] protected RectTransform m_bottomBox;
 
     public virtual void Init()

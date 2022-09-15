@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Factory : Building
 {
-    [SerializeField] List<Unit> m_buildOptions;
+    List<SelectableEntity> m_buildOptions;
     [SerializeField] Transform m_buildPosition;
     [SerializeField] public Transform m_firstWaypoint;
     Queue<Unit> m_constructionQueue;
-    FactoryUI m_actualInterface;
+    ConstructionUI m_actualInterface;
     bool m_isConstructing = false;
 
     //Debug
@@ -18,6 +18,8 @@ public class Factory : Building
     public override void Init()
     {
         base.Init();
+        //m_buildOptions = new List<ClickableEntity>();
+        UnitDispatcher.SetConstructableUnits(out m_buildOptions);
         m_constructionQueue = new Queue<Unit>();
     }
 
@@ -25,7 +27,7 @@ public class Factory : Building
     {
         if (m_actualInterface == null)
             SpawnUI();
-        m_actualInterface.SetPossibilities(m_buildOptions);
+        //m_consm_actualInterface.SetPossibilities(m_buildOptions);
         m_actualInterface.SpawnBuildButtons(m_buildOptions);
         InputController.PlugToClose(DeleteUI);
     }
@@ -33,7 +35,7 @@ public class Factory : Building
     void SpawnUI()
     {
         if (m_actualInterface == null)
-            m_actualInterface = Instantiate(m_interfacePrefab, transform) as FactoryUI;
+            m_actualInterface = Instantiate(m_interfacePrefab, transform) as ConstructionUI;
         m_actualInterface.gameObject.SetActive(true);
         m_actualInterface.image = image;
         m_actualInterface.m_parent = this;
@@ -49,12 +51,12 @@ public class Factory : Building
     public void StartConstruction(Unit toConstruct)
     {
         m_isConstructing = true;
-        Unit constructed = Instantiate(toConstruct, m_buildPosition);
+        Unit constructed = Instantiate(toConstruct, m_buildPosition.position, Quaternion.Euler(0, 0, 0));
         constructed.Init();
         constructed.m_parent = this;
     }
 
-    public void RemoveFromConstructionQueue(Unit toRemove)
+    public void RemoveFromConstructionQueue()
     {
         m_isConstructing = false;
         if (m_constructionQueue.Count > 0)
