@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cancel",
+                    "name": "AltFire",
                     "type": "Button",
                     "id": "1d85fb79-7ca8-4ead-bfa5-efc0fbdd7156",
                     "expectedControlType": "Button",
@@ -434,7 +434,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Cancel",
+                    "action": "AltFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

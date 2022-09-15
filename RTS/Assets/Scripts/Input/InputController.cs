@@ -19,7 +19,7 @@ public class InputController : MonoBehaviour
     UnityEvent<Vector2> m_onScrollInput;
     UnityEvent<int> m_onFasterMove;
     UnityEvent<int> m_onFireInput;
-    UnityEvent<int> m_onCancelInput;
+    UnityEvent<int> m_onAltFireInput;
     UnityEvent m_closeAllUIs;
 
     private void Awake()
@@ -45,8 +45,8 @@ public class InputController : MonoBehaviour
             m_onFasterMove = new UnityEvent<int>();
         if (m_onFireInput == null)
             m_onFireInput = new UnityEvent<int>();
-        if (m_onCancelInput == null)
-            m_onCancelInput = new UnityEvent<int>();
+        if (m_onAltFireInput == null)
+            m_onAltFireInput = new UnityEvent<int>();
         if (m_closeAllUIs == null)
             m_closeAllUIs = new UnityEvent();
     }
@@ -74,7 +74,7 @@ public class InputController : MonoBehaviour
         m_controls.Player.FasterMove.canceled += OnFasterMove;
 
         m_controls.Player.Fire.performed += OnFire;
-        m_controls.Player.Cancel.performed += OnCancel;
+        m_controls.Player.AltFire.performed += OnAltFire;
     }
 
 
@@ -190,20 +190,20 @@ public class InputController : MonoBehaviour
         m_instance.m_onFireInput.RemoveListener(callback);
     }
 
-    void OnCancel(InputAction.CallbackContext context)
+    void OnAltFire(InputAction.CallbackContext context)
     {
         int input = (int)context.ReadValue<float>();
-        m_onCancelInput.Invoke(input);
+        m_onAltFireInput.Invoke(input);
     }
 
-    public static void PlugToCancel(UnityAction<int> callback)
+    public static void PlugToAltFire(UnityAction<int> callback)
     {
-        m_instance.m_onCancelInput.AddListener(callback);
+        m_instance.m_onAltFireInput.AddListener(callback);
     }
 
-    public static void UnplugFromCancel(UnityAction<int> callback)
+    public static void UnplugFromAltFire(UnityAction<int> callback)
     {
-        m_instance.m_onCancelInput.RemoveListener(callback);
+        m_instance.m_onAltFireInput.RemoveListener(callback);
     }
 
     public static void CloseInterfaces()

@@ -10,12 +10,6 @@ public class Engineer : Unit
     FactoryUI factoryUI;
     FactoryUI toInstantiate;
 
-    private void Awake()
-    {
-        factoryUI = (FactoryUI)m_interfacePrefab;
-    }
-
-
     public override void Init()
     {
         base.Init();
@@ -26,12 +20,10 @@ public class Engineer : Unit
         base.ShowUI();
     }
 
-    public override void OnClick()
+    public override void OnClick(out ClickableEntity clicked)
     {
-        //base.OnClick();
-        ShowUI(factoryUI);
-        toInstantiate = m_interface as FactoryUI;
-        toInstantiate.SpawnBuildButtons(m_possibleBuilding);
+        base.OnClick(out clicked);
+        //clicked = this;
     }
 
     public override void OnUnClick()

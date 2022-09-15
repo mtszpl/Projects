@@ -32,7 +32,7 @@ public class BuildingManager : IInputReceiver
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             InputController.PlugToFire(Build);
-            InputController.PlugToCancel(ResetState);
+            InputController.PlugToAltFire(ResetState);
             m_currentlyBuilt = Instantiate(toBuild, hit.point, Quaternion.Euler(0, 0, 0));
             StartCoroutine(FollowCorsor());
         }
@@ -41,7 +41,7 @@ public class BuildingManager : IInputReceiver
     void ResetState(int input)
     {
         ResetState();
-        InputController.UnplugFromCancel(ResetState);
+        InputController.UnplugFromAltFire(ResetState);
     }
 
     void ResetState()

@@ -109,7 +109,7 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cancel"",
+                    ""name"": ""AltFire"",
                     ""type"": ""Button"",
                     ""id"": ""1d85fb79-7ca8-4ead-bfa5-efc0fbdd7156"",
                     ""expectedControlType"": ""Button"",
@@ -456,7 +456,7 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Cancel"",
+                    ""action"": ""AltFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1053,7 +1053,7 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
         m_Player_SpeedUpTime = m_Player.FindAction("SpeedUpTime", throwIfNotFound: true);
         m_Player_SlowDownTime = m_Player.FindAction("SlowDownTime", throwIfNotFound: true);
         m_Player_ResetTime = m_Player.FindAction("ResetTime", throwIfNotFound: true);
-        m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
+        m_Player_AltFire = m_Player.FindAction("AltFire", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1134,7 +1134,7 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpeedUpTime;
     private readonly InputAction m_Player_SlowDownTime;
     private readonly InputAction m_Player_ResetTime;
-    private readonly InputAction m_Player_Cancel;
+    private readonly InputAction m_Player_AltFire;
     public struct PlayerActions
     {
         private @GameplayControlls m_Wrapper;
@@ -1148,7 +1148,7 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
         public InputAction @SpeedUpTime => m_Wrapper.m_Player_SpeedUpTime;
         public InputAction @SlowDownTime => m_Wrapper.m_Player_SlowDownTime;
         public InputAction @ResetTime => m_Wrapper.m_Player_ResetTime;
-        public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
+        public InputAction @AltFire => m_Wrapper.m_Player_AltFire;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1185,9 +1185,9 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
                 @ResetTime.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetTime;
                 @ResetTime.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetTime;
                 @ResetTime.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetTime;
-                @Cancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
+                @AltFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAltFire;
+                @AltFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAltFire;
+                @AltFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAltFire;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1219,9 +1219,9 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
                 @ResetTime.started += instance.OnResetTime;
                 @ResetTime.performed += instance.OnResetTime;
                 @ResetTime.canceled += instance.OnResetTime;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
+                @AltFire.started += instance.OnAltFire;
+                @AltFire.performed += instance.OnAltFire;
+                @AltFire.canceled += instance.OnAltFire;
             }
         }
     }
@@ -1387,7 +1387,7 @@ public partial class @GameplayControlls : IInputActionCollection2, IDisposable
         void OnSpeedUpTime(InputAction.CallbackContext context);
         void OnSlowDownTime(InputAction.CallbackContext context);
         void OnResetTime(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
+        void OnAltFire(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

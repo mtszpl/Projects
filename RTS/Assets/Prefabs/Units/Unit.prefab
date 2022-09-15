@@ -47,10 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isConstructed: 0
+  m_isSelected: 0
   m_interfacePrefab: {fileID: 3401134489454859395, guid: 5a65f38dd4542a0489faacf1193e4e94, type: 3}
   m_constructionTime: 2
   m_hp: 2
+  m_parent: {fileID: 0}
   m_stats: {fileID: 11400000, guid: 1db622367d4eb654cbbfc144f2fd0376, type: 2}
+  m_acceptableDistanceToTarget: 0
 --- !u!195 &8109454246025684405
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -146,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 07c966add1b3bf647a9e145300d5cb97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
